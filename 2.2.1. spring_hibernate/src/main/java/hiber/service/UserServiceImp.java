@@ -30,8 +30,9 @@ public class UserServiceImp implements UserService {
    @Transactional
    @Override
    public User getUser(String carModel, int Series) {return userDao.findCarByModelAndSeries(carModel, Series);}
+
    @Transactional
    @Override
-   public void clean(){userDao.clean();}
+   public void cleanTables(){ userDao.cleanUsersAndCarsTables();}
 
 }

@@ -10,5 +10,6 @@ public interface UserDao {
    List<User> listUsers();
    User findCarByModelAndSeries(String carModel, int Series);
 
-   void clean();
+   void cleanUsersAndCarsTables();
+
 }

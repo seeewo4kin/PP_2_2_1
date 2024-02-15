@@ -9,6 +9,7 @@ public interface UserService {
     void add(User user);
     List<User> listUsers();
     User getUser(String carModel, int Series);
-    void clean();
+
+    void cleanTables();
 
 }

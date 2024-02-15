@@ -11,17 +11,14 @@ import java.util.List;
 
 public class MainApp {
    public static void main(String[] args) throws SQLException {
-      AnnotationConfigApplicationContext context = 
-            new AnnotationConfigApplicationContext(AppConfig.class);
+      AnnotationConfigApplicationContext context =
+              new AnnotationConfigApplicationContext(AppConfig.class);
 
       UserService userService = context.getBean(UserService.class);
-      userService.clean();
-
       Car car1 = new Car("Lada", 21114);
       Car car2 = new Car("BMW", 34212);
       Car car3 = new Car("CoolCar", 124215);
       Car car4 = new Car("BadCar", 42163);
-
 
       userService.add(new User("User1", "Lastname1", "user1@mail.ru", car1));
       userService.add(new User("User2", "Lastname2", "user2@mail.ru", car2));
@@ -29,22 +26,17 @@ public class MainApp {
       userService.add(new User("User4", "Lastname4", "user4@mail.ru", car4));
 
 
-
       List<User> users = userService.listUsers();
-      for (User user : users) {
-         System.out.println("Id = "+user.getId());
-         System.out.println("First Name = "+user.getFirstName());
-         System.out.println("Last Name = "+user.getLastName());
-         System.out.println("Email = "+user.getEmail());
-         System.out.println("Car = "+user.getCar());
-      }
-      for (User user : users) {
-         if (userService.getUser("Lada", 21114).equals(user)) {
-            System.out.println(user);
-         }
-      }
+//      for (User user : users) {
+//         System.out.println("Id = "+user.getId());
+//         System.out.println("First Name = "+user.getFirstName());
+//         System.out.println("Last Name = "+user.getLastName());
+//         System.out.println("Email = "+user.getEmail());
+//         System.out.println("Car = "+user.getCar());
+//      }
 
-      userService.clean();
+      System.out.println(userService.getUser("Lada", 21114));
+      userService.cleanTables();
       context.close();
    }
 }
