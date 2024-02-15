@@ -10,7 +10,7 @@ public class Car {
     private long id;
     @Column(name = "series")
     private int series;
-    @Column(name = "Car")
+    @Column(name = "car")
     private String model;
     @OneToOne(mappedBy = "car", cascade = CascadeType.ALL)
     private User user;
@@ -57,11 +57,9 @@ public class Car {
 
     @Override
     public String toString() {
-        return "\nCar{" +
+        return "Car{" +
                 "id=" + id +
                 ", series=" + series +
-                ", model='" + model + '\'' +
-                ", user=" + user +
-                '}';
+                ", model='" + model;
     }
 }

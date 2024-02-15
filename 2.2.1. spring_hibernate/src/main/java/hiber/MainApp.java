@@ -15,16 +15,19 @@ public class MainApp {
             new AnnotationConfigApplicationContext(AppConfig.class);
 
       UserService userService = context.getBean(UserService.class);
+      userService.clean();
 
-      userService.add(new User("User1", "Lastname1", "user1@mail.ru"));
-      userService.add(new User("User2", "Lastname2", "user2@mail.ru"));
-      userService.add(new User("User3", "Lastname3", "user3@mail.ru"));
-      userService.add(new User("User4", "Lastname4", "user4@mail.ru"));
+      Car car1 = new Car("Lada", 21114);
+      Car car2 = new Car("BMW", 34212);
+      Car car3 = new Car("CoolCar", 124215);
+      Car car4 = new Car("BadCar", 42163);
 
-      userService.addCar(new Car("Lada", 4321));
-      userService.addCar(new Car("BMW", 44));
-      userService.addCar(new Car("BMW", 777));
-      userService.addCar(new Car("Kia", 1543));
+
+      userService.add(new User("User1", "Lastname1", "user1@mail.ru", car1));
+      userService.add(new User("User2", "Lastname2", "user2@mail.ru", car2));
+      userService.add(new User("User3", "Lastname3", "user3@mail.ru", car3));
+      userService.add(new User("User4", "Lastname4", "user4@mail.ru", car4));
+
 
 
       List<User> users = userService.listUsers();
@@ -33,9 +36,15 @@ public class MainApp {
          System.out.println("First Name = "+user.getFirstName());
          System.out.println("Last Name = "+user.getLastName());
          System.out.println("Email = "+user.getEmail());
- 
+         System.out.println("Car = "+user.getCar());
+      }
+      for (User user : users) {
+         if (userService.getUser("Lada", 21114).equals(user)) {
+            System.out.println(user);
+         }
       }
 
+      userService.clean();
       context.close();
    }
 }
